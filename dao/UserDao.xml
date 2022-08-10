@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnbemc.dao.UserDao">
+		<!-- 查找是否有该用户 -->
+	<select id="findUser" resultType="user" parameterType="String">
+		SELECT username,password FROM t_user where username=#{username} and password=#{password}
+	</select>
+	<!-- 注册 -->
+	<insert id="register" parameterType="user">
+		insert into t_user (username,password,phone) value(#{username},#{password},#{phone})
+	</insert>
+</mapper>

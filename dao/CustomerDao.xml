@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnbemc.dao.CustomerDao">
+	<!--根据id查询客户信息 -->
+	<!-- 查询 -->
+	<select id="findCustomerById" parameterType="Integer"
+		                               resultType="Customer">
+		select * from t_customer where id = #{id}
+	</select>
+	<!-- 增加 -->
+	<insert id="addCustomer"  parameterType="Customer" >
+		insert into t_customer (username,jobs,phone) value(#{username},#{jobs},#{phone})
+	</insert>
+	<!-- 删除 -->
+	<delete id="deleteCustomer" parameterType="Integer">
+		delete from t_customer where id=#{id}
+	</delete>
+	<!-- 修改 -->
+	<update id="updateCustomer" parameterType="Customer" >
+			update t_customer  set id=#{id}, username=#{username},
+			 jobs=#{jobs}, phone=#{phone} where id=#{id} 
+	</update>
+	<!-- 查询客户全部信息 -->
+	<select id="findCustomerAll" resultType="Customer" parameterType="Customer">
+		select * from t_customer limit #{start},#{rows}	
+	</select>
+	<!-- 查询客户总数 -->
+	<select id="selectCustomerCount" parameterType="Customer" resultType="int">
+		SELECT count(*) FROM t_customer  
+	</select>
+</mapper>
